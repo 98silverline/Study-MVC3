@@ -10,13 +10,11 @@ import java.util.Map;
 @Repository
 public class ItemRepository {
 
-    //실제로는 hashmap 쓰면 안됨
-    //동시접근하면 문제가 생길 수 있기 때문. long도 마찬가지.
     private static final Map<Long, Item> store = new HashMap<>(); //static
-    private static long sequance = 0L; //static
+    private static long sequence = 0L; //static
 
     public Item save(Item item) {
-        item.setId(++sequance);
+        item.setId(++sequence);
         store.put(item.getId(), item);
         return item;
     }
@@ -34,6 +32,10 @@ public class ItemRepository {
         findItem.setItemName(updateParam.getItemName());
         findItem.setPrice(updateParam.getPrice());
         findItem.setQuantity(updateParam.getQuantity());
+        findItem.setOpen(updateParam.getOpen());
+        findItem.setRegisons(updateParam.getRegisons());
+        findItem.setItemType(updateParam.getItemType());
+        findItem.setDeliveryCode(updateParam.getDeliveryCode());
     }
 
     public void clearStore() {
